@@ -84,8 +84,15 @@ This project uses the **GitHub Project Board** as a Scrum board to practice agil
    git commit -m "feat: add <section-name> section"
    git push origin feature/<section-name>
    ```
-5. Open a Pull Request and move the task to **In Review**
-6. After review and merge, move the task to **Done**
+5. Create a Pull Request on GitHub:
+   - Go to the repository on GitHub
+   - Click **"Compare & pull request"** (or go to **Pull requests** > **New pull request**)
+   - Set the base branch to `main` and the compare branch to your `feature/<section-name>`
+   - Add a clear title and description of what you implemented
+   - Request a review from a teammate
+   - Move the task to **In Review** on the Scrum board
+6. **Do NOT merge directly** — wait for at least one approval from a reviewer
+7. After approval, merge the PR and move the task to **Done**
 
 ## Project Structure
 
