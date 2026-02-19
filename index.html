@@ -293,13 +293,128 @@
       font-size: 0.8rem;
     }
 
+    /* ─── HAMBURGER MENU ─── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0; right: 0;
+      background: var(--navy-dark);
+      padding: 24px 24px 32px;
+      z-index: 99;
+      flex-direction: column;
+      gap: 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu .mobile-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .mobile-menu .mobile-actions a {
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    /* ─── LARGE DESKTOP ─── */
+    @media (min-width: 1280px) {
+      nav { padding: 0 80px; }
+      .hero { padding: 100px 80px 120px; }
+      .section { padding: 100px 80px; }
+      .section-dark { padding: 100px 80px; }
+    }
+
+    /* ─── TABLET ─── */
+    @media (max-width: 1024px) and (min-width: 769px) {
+      nav { padding: 0 32px; }
+      .nav-links { gap: 20px; }
+      .hero { padding: 60px 32px 80px; gap: 40px; }
+      .section { padding: 70px 32px; }
+      .section-dark { padding: 70px 32px; }
+      .section-split { gap: 48px; }
+      .section-copy h2 { font-size: clamp(1.6rem, 2.5vw, 2.2rem); }
+    }
+
+    /* ─── MOBILE ─── */
     @media (max-width: 768px) {
       nav { padding: 0 20px; }
       .nav-links { display: none; }
-      .hero, .section-split, .section-dark .section-split { grid-template-columns: 1fr; gap: 40px; padding: 50px 24px; }
-      .section { padding: 60px 24px; }
-      .section-dark { padding: 60px 24px; }
+      .nav-actions { display: none; }
+      .hamburger { display: flex; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 48px 20px 60px;
+        min-height: auto;
+      }
+      .hero h1 { font-size: clamp(1.75rem, 7vw, 2.25rem); }
+      .hero p { font-size: 0.9rem; max-width: 100%; }
+      .hero-visual { aspect-ratio: 16/10; }
+
+      .section { padding: 56px 20px; }
+      .section-dark { padding: 56px 20px; }
+
+      .section-split {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
       .section-split.reverse { direction: ltr; }
+      /* On mobile, image always comes first */
+      .section-split.reverse .placeholder-img,
+      .section-split.reverse .collab-visual { order: -1; }
+
+      .section-copy h2 { font-size: clamp(1.6rem, 6vw, 2rem); }
+      .section-copy p { max-width: 100%; }
+
+      .collab-visual { min-height: 200px; }
+      .orbit { width: 180px; height: 180px; }
+      .orbit-inner { width: 106px; height: 106px; }
+
+      .placeholder-img { aspect-ratio: 4/3; }
+    }
+
+    /* ─── SMALL MOBILE ─── */
+    @media (max-width: 400px) {
+      .hero h1 { font-size: 1.6rem; }
+      .btn-primary, .btn-outline-blue, .btn-login { font-size: 0.82rem; padding: 9px 16px; }
+      .section { padding: 44px 16px; }
+      .section-dark { padding: 44px 16px; }
     }
   </style>
 </head>
@@ -326,7 +441,35 @@
       <a href="#" class="btn-login">Login</a>
       <a href="#" class="btn-primary">Try Whitepace free →</a>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#">Products</a>
+    <a href="#">Solutions</a>
+    <a href="#">Resources</a>
+    <a href="#">Pricing</a>
+    <div class="mobile-actions">
+      <a href="#" style="background:var(--yellow);color:#111;font-weight:700;border-radius:8px;">Login</a>
+      <a href="#" style="background:var(--blue-btn);color:#fff;font-weight:700;border-radius:8px;justify-content:center;">Try Whitepace free →</a>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('hamburger');
+    const menu = document.getElementById('mobileMenu');
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+    }));
+  </script>
 
   <!-- ═══════════════ HERO ═══════════════ -->
   <section class="hero">
