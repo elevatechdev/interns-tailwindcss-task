@@ -1,36 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Whitepace</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <script src="js/tailwind.js"></script>
-    <script src="tailwind.config.js"></script>
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="js/include_html.js"></script>
-  </head>
-  <body>
-      <!-- add include html here -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whitepace – Get More Done</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-      <!-- example -->
-      <div w3-include-html="sections/example/example.html"></div>
+    :root {
+      --navy: #0b2a6b;
+      --navy-dark: #091f52;
+      --blue-btn: #4a7cf7;
+      --yellow: #f5c842;
+      --text-light: rgba(255,255,255,0.75);
+      --wave-line: rgba(255,255,255,0.08);
+      --placeholder-bg: #c5daf5;
+      --placeholder-border: #a3c2e8;
+    }
 
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: #fff;
+      color: #111;
+      line-height: 1.6;
+    }
 
+    /* ─── NAV ─── */
+    nav {
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+    }
 
+    .nav-logo svg { width: 28px; height: 28px; }
 
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
 
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
 
+    .nav-links a::after { content: '▾'; font-size: 0.65rem; opacity: 0.6; }
 
+    .nav-actions { display: flex; gap: 12px; align-items: center; }
 
-      
+    .btn-login {
+      background: var(--yellow);
+      color: #111;
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 9px 22px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
 
-      <!-- call includeHTML function -->
-      <script>
-          includeHTML();
-      </script>
-  </body>
+    .btn-primary {
+      background: var(--blue-btn);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 9px 22px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover, .btn-login:hover { opacity: 0.88; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--navy);
+      padding: 80px 60px 100px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+      position: relative;
+      overflow: hidden;
+      min-height: 520px;
+    }
+
+    /* animated wave lines */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          -30deg,
+          transparent,
+          transparent 60px,
+          var(--wave-line) 60px,
+          var(--wave-line) 61px
+        );
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      max-width: 380px;
+      margin-bottom: 36px;
+    }
+
+    .hero-visual {
+      background: var(--placeholder-bg);
+      border-radius: 12px;
+      aspect-ratio: 16/10;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── SECTION SHARED ─── */
+    .section {
+      padding: 90px 60px;
+    }
+
+    .section-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .section-split.reverse { direction: rtl; }
+    .section-split.reverse > * { direction: ltr; }
+
+    .section-copy h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-copy p {
+      color: #555;
+      font-size: 0.9rem;
+      max-width: 360px;
+      margin-bottom: 28px;
+    }
+
+    .placeholder-img {
+      background: var(--placeholder-bg);
+      border-radius: 10px;
+      aspect-ratio: 4/3;
+      width: 100%;
+    }
+
+    .placeholder-img.bordered {
+      border: 2px solid var(--placeholder-border);
+    }
+
+    /* ─── DARK SECTIONS ─── */
+    .section-dark {
+      background: var(--navy);
+      padding: 90px 60px;
+    }
+
+    .section-dark .section-copy h2 { color: #fff; }
+    .section-dark .section-copy p { color: var(--text-light); }
+
+    .section-dark h2 mark {
+      background: none;
+      color: var(--yellow);
+      text-decoration: underline;
+      text-decoration-color: var(--yellow);
+      text-decoration-thickness: 3px;
+      text-underline-offset: 4px;
+    }
+
+    /* highlight in light sections */
+    .section-copy h2 mark {
+      background: linear-gradient(180deg, transparent 60%, rgba(245,200,66,0.4) 60%);
+      color: inherit;
+    }
+
+    /* ─── WORK TOGETHER ─── */
+    .collab-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 240px;
+    }
+
+    .collab-center {
+      width: 52px;
+      height: 52px;
+      background: #fff;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      z-index: 2;
+    }
+
+    .collab-center svg { width: 28px; height: 28px; }
+
+    .orbit {
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border: 1.5px dashed #ccc;
+      border-radius: 50%;
+    }
+
+    .orbit-inner {
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border: 1.5px dashed #ccc;
+      border-radius: 50%;
+    }
+
+    .dot {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* ─── BTN OUTLINE ─── */
+    .btn-outline-blue {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue-btn);
+      color: #fff;
+      padding: 9px 22px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-outline-blue:hover { opacity: 0.85; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy-dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 28px 60px;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero, .section-split, .section-dark .section-split { grid-template-columns: 1fr; gap: 40px; padding: 50px 24px; }
+      .section { padding: 60px 24px; }
+      .section-dark { padding: 60px 24px; }
+      .section-split.reverse { direction: ltr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════ NAV ═══════════════ -->
+  <nav>
+    <a class="nav-logo" href="#">
+      <!-- W icon -->
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 8 L10 24 L16 14 L22 24 L28 8" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      whitepace
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#">Products</a></li>
+      <li><a href="#">Solutions</a></li>
+      <li><a href="#">Resources</a></li>
+      <li><a href="#">Pricing</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="#" class="btn-login">Login</a>
+      <a href="#" class="btn-primary">Try Whitepace free →</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Get More Done with whitepace</h1>
+      <p>Project management software that enables your teams to collaborate, plan, analyze and manage everyday tasks</p>
+      <a href="#" class="btn-primary">Try Whitepace free →</a>
+    </div>
+    <div class="hero-visual"></div>
+  </section>
+
+  <!-- ═══════════════ PROJECT MANAGEMENT ═══════════════ -->
+  <section class="section">
+    <div class="section-split">
+      <div class="placeholder-img"></div>
+      <div class="section-copy">
+        <h2>Project<br>Management</h2>
+        <p>Images, videos, PDFs and audio files are supported. Create math expressions and diagrams directly from the app. Take photos with the mobile app and save them to a note.</p>
+        <a href="#" class="btn-outline-blue">Get Started →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ WORK TOGETHER ═══════════════ -->
+  <section class="section" style="padding-top: 0;">
+    <div class="section-split reverse">
+      <div class="section-copy">
+        <h2>Work together</h2>
+        <p>With whitepace, share your notes with your colleagues and collaborate on them. You can also publish a note to the internet and share the URL with others.</p>
+        <a href="#" class="btn-outline-blue">Try it now →</a>
+      </div>
+      <div class="collab-visual">
+        <!-- outer orbit -->
+        <div class="orbit">
+          <div class="dot" style="background:#4285f4; top:10%; left:62%;"></div>
+          <div class="dot" style="background:#fbbc04; top:50%; left:100%;"></div>
+          <div class="dot" style="background:#34a853; top:85%; left:72%;"></div>
+          <div class="dot" style="background:#ea4335; top:50%; left:-4%;"></div>
+          <div class="dot" style="background:#4285f4; top:15%; left:28%;"></div>
+        </div>
+        <!-- inner orbit -->
+        <div class="orbit-inner">
+          <div class="dot" style="background:#4285f4; top:50%; left:100%;"></div>
+          <div class="dot" style="background:#fbbc04; top:0%; left:50%;"></div>
+          <div class="dot" style="background:#34a853; top:50%; left:-4%;"></div>
+          <div class="dot" style="background:#4285f4; top:100%; left:50%;"></div>
+        </div>
+        <!-- center logo -->
+        <div class="collab-center">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 8 L10 24 L16 14 L22 24 L28 8" stroke="#0b2a6b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ BROWSER EXTENSION ═══════════════ -->
+  <section class="section-dark">
+    <div class="section-split">
+      <div class="section-copy">
+        <h2>Use as <mark>Extension</mark></h2>
+        <p>Use the web clipper extension, available on Chrome and Firefox, to save web pages or take screenshots as notes.</p>
+        <a href="#" class="btn-outline-blue">Let's Go →</a>
+      </div>
+      <div class="placeholder-img" style="background: rgba(197,218,245,0.25); border: none;"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CUSTOMISE ═══════════════ -->
+  <section class="section">
+    <div class="section-split reverse">
+      <div class="section-copy">
+        <h2>Customise it to <mark>your needs</mark></h2>
+        <p>Customise the app with plugins, custom themes and multiple text editors (Rich Text or Markdown). Or create your own scripts and plugins using the Extension API.</p>
+        <a href="#" class="btn-outline-blue">Let's Go →</a>
+      </div>
+      <div class="placeholder-img bordered"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer>
+    © 2024 Whitepace. All rights reserved.
+  </footer>
+
+</body>
 </html>
