@@ -7,285 +7,436 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#0b2a6b",
+            "navy-dark": "#091f52",
+            blue: "#4a7cf7",
+            yellow: "#f5c842",
+            "placeholder-bg": "#c5daf5",
+            "placeholder-border": "#a3c2e8",
+          },
+          fontFamily: {
+            sans: ["Manrope", "sans-serif"],
+          },
+          zIndex: {
+            99: "99",
+            100: "100",
+          },
+          spacing: {
+            "1.25": "0.3125rem",
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="font-sans text-neutral-900 leading-relaxed">
 
-    :root {
-      --navy: #0b2a6b;
-      --navy-dark: #091f52;
-      --blue-btn: #4a7cf7;
-      --yellow: #f5c842;
-      --text-light: rgba(255,255,255,0.75);
-      --wave-line: rgba(255,255,255,0.08);
-      --placeholder-bg: #c5daf5;
-      --placeholder-border: #a3c2e8;
-    }
+  <!-- ═══════════════ NAV ═══════════════ -->
+  <nav class="bg-navy flex items-center justify-between px-6 xl:px-20 h-16 sticky top-0 z-100">
+    <a class="flex items-center gap-2.5 text-white font-bold text-lg no-underline" href="#">
+      <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 8 L10 24 L16 14 L22 24 L28 8" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      whitepace
+    </a>
 
-    body {
-      font-family: 'Manrope', sans-serif;
-      background: #fff;
-      color: #111;
-      line-height: 1.6;
-    }
+    <ul class="hidden md:flex gap-9 list-none">
+      <li><a class="text-white/85 no-underline text-sm font-medium flex items-center gap-1" href="#">Products <span class="text-xs opacity-60">▾</span></a></li>
+      <li><a class="text-white/85 no-underline text-sm font-medium flex items-center gap-1" href="#">Solutions <span class="text-xs opacity-60">▾</span></a></li>
+      <li><a class="text-white/85 no-underline text-sm font-medium flex items-center gap-1" href="#">Resources <span class="text-xs opacity-60">▾</span></a></li>
+      <li><a class="text-white/85 no-underline text-sm font-medium flex items-center gap-1" href="#">Pricing <span class="text-xs opacity-60">▾</span></a></li>
+    </ul>
 
-    /* ─── NAV ─── */
-    nav {
-      background: var(--navy);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 60px;
-      height: 64px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+    <div class="hidden md:flex gap-3 items-center">
+      <a href="#" class="bg-yellow text-neutral-900 font-bold text-sm px-5 py-2 rounded-md no-underline hover:opacity-90">Login</a>
+      <a href="#" class="bg-blue text-white font-bold text-sm px-5 py-2 rounded-md no-underline inline-flex items-center gap-1.5 hover:opacity-90 transition-opacity">Try Whitepace free →</a>
+    </div>
+    <button class="md:hidden flex flex-col gap-1.25 cursor-pointer p-1 bg-transparent border-none" id="hamburger" aria-label="Toggle menu">
+      <span class="block w-6 h-0.5 bg-white rounded transition-all"></span>
+      <span class="block w-6 h-0.5 bg-white rounded transition-all"></span>
+      <span class="block w-6 h-0.5 bg-white rounded transition-all"></span>
+    </button>
+  </nav>
 
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.1rem;
-      text-decoration: none;
-    }
+  <!-- Mobile Menu -->
+  <div class="hidden fixed top-16 left-0 right-0 bg-navy-dark p-6 pb-8 z-99 flex-col gap-0" id="mobileMenu">
+    <a class="text-white/85 no-underline text-base font-medium py-3.5 border-b border-white/10" href="#">Products</a>
+    <a class="text-white/85 no-underline text-base font-medium py-3.5 border-b border-white/10" href="#">Solutions</a>
+    <a class="text-white/85 no-underline text-base font-medium py-3.5 border-b border-white/10" href="#">Resources</a>
+    <a class="text-white/85 no-underline text-base font-medium py-3.5 border-b border-white/10" href="#">Pricing</a>
+    <div class="flex flex-col gap-3 mt-5">
+      <a href="#" class="bg-yellow text-neutral-900 font-bold text-base py-3 rounded-lg text-center">Login</a>
+      <a href="#" class="bg-blue text-white font-bold text-base py-3 rounded-lg text-center justify-center">Try Whitepace free →</a>
+    </div>
+  </div>
 
-    .nav-logo svg { width: 28px; height: 28px; }
+  <script>
+    // ═══════════════ MOBILE MENU ANIMATIONS ═══════════════
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    hamburger.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      
+      if (isHidden) {
+        // Opening menu
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('flex');
+        // Animate hamburger
+        hamburger.style.transform = 'rotate(90deg)';
+        // Stagger children animation
+        const items = mobileMenu.querySelectorAll('a');
+        items.forEach((item, index) => {
+          item.style.animation = `slideIn 0.4s ease-out ${0.1 + index * 0.06}s both`;
+        });
+      } else {
+        // Closing menu
+        hamburger.style.transform = 'rotate(0deg)';
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+      }
+    });
 
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-    }
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.style.transform = 'rotate(0deg)';
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+      });
+    });
 
-    .nav-links a {
-      color: rgba(255,255,255,0.85);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
+    // ═══════════════ SCROLL ANIMATION FOR ELEMENTS ═══════════════
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
 
-    .nav-links a::after { content: '▾'; font-size: 0.65rem; opacity: 0.6; }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
 
-    .nav-actions { display: flex; gap: 12px; align-items: center; }
+    // Observe sections
+    document.querySelectorAll('section').forEach(section => {
+      section.style.opacity = '0';
+      observer.observe(section);
+    });
 
-    .btn-login {
-      background: var(--yellow);
-      color: #111;
-      font-weight: 700;
-      font-size: 0.875rem;
-      padding: 9px 22px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-    }
+    // ═══════════════ BUTTON HOVER ANIMATIONS ═══════════════
+    const buttons = document.querySelectorAll('a[href*="#"], .btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+        this.style.boxShadow = '0 8px 16px rgba(74, 124, 247, 0.2)';
+      });
+      btn.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = 'none';
+      });
+    });
 
-    .btn-primary {
-      background: var(--blue-btn);
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.875rem;
-      padding: 9px 22px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: opacity 0.2s;
-    }
+    // ═══════════════ LINK HOVER ANIMATIONS ═══════════════
+    const navLinks = document.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('mouseenter', function() {
+        if (!this.classList.contains('bg-yellow') && !this.classList.contains('bg-blue')) {
+          this.style.color = '#4a7cf7';
+        }
+      });
+      link.addEventListener('mouseleave', function() {
+        if (!this.classList.contains('bg-yellow') && !this.classList.contains('bg-blue')) {
+          this.style.color = '';
+        }
+      });
+    });
 
-    .btn-primary:hover, .btn-login:hover { opacity: 0.88; }
+    // ═══════════════ KEYFRAME ANIMATIONS ═══════════════
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
 
-    /* ─── HERO ─── */
-    .hero {
-      background: var(--navy);
-      padding: 80px 60px 100px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 60px;
-      position: relative;
-      overflow: hidden;
-      min-height: 520px;
-    }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        repeating-linear-gradient(
-          -30deg,
-          transparent,
-          transparent 60px,
-          var(--wave-line) 60px,
-          var(--wave-line) 61px
-        );
-      pointer-events: none;
-    }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+      }
 
-    .hero-content { position: relative; z-index: 1; }
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
 
-    .hero h1 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.15;
-      margin-bottom: 20px;
-    }
+      /* Smooth transitions for all interactive elements */
+      a, button, input, select {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
 
-    .hero p {
-      color: var(--text-light);
-      font-size: 0.95rem;
-      max-width: 380px;
-      margin-bottom: 36px;
-    }
+      /* Hamburger button animation */
+      #hamburger {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
 
-    .hero-visual {
-      background: var(--placeholder-bg);
-      border-radius: 12px;
-      aspect-ratio: 16/10;
-      position: relative;
-      z-index: 1;
-    }
+      /* Mobile menu smooth transition */
+      #mobileMenu {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
 
-    /* ─── SECTION SHARED ─── */
-    .section { padding: 90px 60px; }
+      /* Nav links hover effect */
+      .nav-links a, .mobile-menu a {
+        position: relative;
+      }
 
-    .section-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 80px;
-    }
+      .nav-links a::after, .mobile-menu a::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #4a7cf7;
+        transition: width 0.3s ease-out;
+      }
 
-    .section-split.reverse { direction: rtl; }
-    .section-split.reverse > * { direction: ltr; }
+      .nav-links a:hover::after, .mobile-menu a:hover::after {
+        width: 100%;
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
 
-    .section-copy h2 {
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
+  <!-- ═══════════════ SECTION 1 — HERO ═══════════════ -->
+  <section class="bg-navy grid grid-cols-1 lg:grid-cols-2 items-center gap-10 xl:gap-16 px-6 xl:px-20 py-16 xl:py-24 relative overflow-hidden min-h-[520px]">
+    <!-- Wave pattern -->
+    <div class="absolute inset-0 wave-pattern pointer-events-none"></div>
+    
+    <div class="relative z-10">
+      <h1 class="text-white text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-5">Get More Done with whitepace</h1>
+      <p class="text-white/75 text-base max-w-[380px] mb-9">Project management software that enables your teams to collaborate, plan, analyze and manage everyday tasks</p>
+      <a href="#" class="bg-blue text-white font-bold text-sm px-5 py-2.5 rounded-md no-underline inline-flex items-center gap-1.5 hover:opacity-90 transition-opacity">Try Whitepace free →</a>
+    </div>
+    <div class="bg-placeholder-bg rounded-xl aspect-[16/10] relative z-10"></div>
+  </section>
 
-    .section-copy p {
-      color: #555;
-      font-size: 0.9rem;
-      max-width: 360px;
-      margin-bottom: 28px;
-    }
+  <!-- ═══════════════ SECTION 2 — PROJECT MANAGEMENT ═══════════════ -->
+  <section class="py-16 xl:py-24 px-6 xl:px-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 xl:gap-20">
+      <div class="bg-placeholder-bg rounded-lg aspect-[4/3] w-full"></div>
+      <div>
+        <h2 class="text-3xl lg:text-4xl font-extrabold leading-tight mb-4">Project<br>Management</h2>
+        <p class="text-neutral-600 text-base max-w-[360px] mb-7">Images, videos, PDFs and audio files are supported. Create math expressions and diagrams directly from the app. Take photos with the mobile app and save them to a note.</p>
+        <a href="#" class="bg-blue text-white font-bold text-sm px-5 py-2.5 rounded-md no-underline inline-flex items-center gap-1.5 hover:opacity-85 transition-opacity">Get Started →</a>
+      </div>
+    </div>
+  </section>
 
-    .placeholder-img {
-      background: var(--placeholder-bg);
-      border-radius: 10px;
-      aspect-ratio: 4/3;
-      width: 100%;
-    }
+  <!-- ═══════════════ SECTION 3 — WORK TOGETHER ═══════════════ -->
+  <section class="py-16 xl:py-24 px-6 xl:px-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 xl:gap-20">
+      <div>
+        <h2 class="text-3xl lg:text-4xl font-extrabold leading-tight mb-4">Work together</h2>
+        <p class="text-neutral-600 text-base max-w-[360px] mb-7">With whitepace, share your notes with your colleagues and collaborate on them. You can also publish a note to the internet and share the URL with others.</p>
+        <a href="#" class="bg-blue text-white font-bold text-sm px-5 py-2.5 rounded-md no-underline inline-flex items-center gap-1.5 hover:opacity-85 transition-opacity">Try it now →</a>
+      </div>
+      <div class="flex items-center justify-center min-h-[240px] relative">
+        <!-- Orbit rings -->
+        <div class="absolute w-[220px] h-[220px] border border-dashed border-gray-300 rounded-full">
+          <div class="absolute w-[22px] h-[22px] rounded-full bg-blue top-[10%] left-[62%] -translate-x-1/2 -translate-y-1/2"></div>
+          <div class="absolute w-[22px] h-[22px] rounded-full bg-yellow top-[50%] left-[100%] -translate-x-1/2 -translate-y-1/2"></div>
+          <div class="absolute w-[22px] h-[22px] rounded-full bg-green-500 top-[85%] left-[72%] -translate-x-1/2 -translate-y-1/2"></div>
+          <div class="absolute w-[22px] h-[22px] rounded-full bg-red-500 top-[50%] left-[-4%] -translate-x-1/2 -translate-y-1/2"></div>
+          <div class="absolute w-[22px] h-[22px] rounded-full bg-blue top-[15%] left-[28%] -translate-x-1/2 -translate-y-1/2"></div>
+        </div>
+        <div class="absolute w-[130px] h-[130px] border border-dashed border-gray-300 rounded-full">
+          <div class="absolute w-[22px] h-[22px] rounded-full bg-blue top-[50%] left-[100%] -translate-x-1/2 -translate-y-1/2"></div>
+          <div class="absolute w-[22px] h-[22px] rounded-full bg-yellow top-[0%] left-[50%] -translate-x-1/2 -translate-y-1/2"></div>
+          <div class="absolute w-[22px] h-[22px] rounded-full bg-green-500 top-[50%] left-[-4%] -translate-x-1/2 -translate-y-1/2"></div>
+          <div class="absolute w-[22px] h-[22px] rounded-full bg-blue top-[100%] left-[50%] -translate-x-1/2 -translate-y-1/2"></div>
+        </div>
+        <!-- Center icon -->
+        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center z-10 shadow-lg">
+          <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 8 L10 24 L16 14 L22 24 L28 8" stroke="#0b2a6b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    .placeholder-img.bordered { border: 2px solid var(--placeholder-border); }
+  <!-- ═══════════════ SECTION 4 — BROWSER EXTENSION ═══════════════ -->
+  <section class="bg-navy py-16 xl:py-24 px-6 xl:px-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 xl:gap-20">
+      <div>
+        <h2 class="text-3xl lg:text-4xl font-extrabold leading-tight mb-4 text-white">Use as <span class="highlight-yellow">Extension</span></h2>
+        <p class="text-white/75 text-base max-w-[360px] mb-7">Use the web clipper extension, available on Chrome and Firefox, to save web pages or take screenshots as notes.</p>
+        <a href="#" class="bg-blue text-white font-bold text-sm px-5 py-2.5 rounded-md no-underline inline-flex items-center gap-1.5 hover:opacity-85 transition-opacity">Let's Go →</a>
+      </div>
+      <div class="bg-placeholder-bg/25 rounded-lg aspect-[4/3] w-full border-none"></div>
+    </div>
+  </section>
 
-    /* ─── DARK SECTIONS ─── */
-    .section-dark {
-      background: var(--navy);
-      padding: 90px 60px;
-    }
+  <!-- ═══════════════ SECTION 4B — CUSTOMISE ═══════════════ -->
+  <section class="py-16 xl:py-24 px-6 xl:px-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 xl:gap-20">
+      <div class="order-2 lg:order-1">
+        <h2 class="text-3xl lg:text-4xl font-extrabold leading-tight mb-4">Customise it to <span class="highlight-yellow">your needs</span></h2>
+        <p class="text-neutral-600 text-base max-w-[360px] mb-7">Customise the app with plugins, custom themes and multiple text editors (Rich Text or Markdown). Or create your own scripts and plugins using the Extension API.</p>
+        <a href="#" class="bg-blue text-white font-bold text-sm px-5 py-2.5 rounded-md no-underline inline-flex items-center gap-1.5 hover:opacity-85 transition-opacity">Let's Go →</a>
+      </div>
+      <div class="bg-placeholder-bg rounded-lg aspect-[4/3] w-full border-2 border-placeholder-border order-1 lg:order-2"></div>
+    </div>
+  </section>
 
-    .section-dark .section-copy h2 { color: #fff; }
-    .section-dark .section-copy p { color: var(--text-light); }
+  <!-- ═══════════════ SECTION 5 — PRICING ═══════════════ -->
+  <section class="py-16 xl:py-24 px-6 xl:px-20 bg-blue-50 text-center">
+    <h2 class="text-3xl lg:text-4xl xl:text-5xl font-extrabold mb-3">Choose <span class="highlight-yellow">Your Plan</span></h2>
+    <p class="text-neutral-600 text-base max-w-[520px] mx-auto mb-14">Whether you want to get organized, keep your personal life on track, or boost workplace productivity, Evernote has the right plan for you.</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[980px] mx-auto items-center">
+      <!-- Free -->
+      <div class="bg-white border border-gray-200 rounded-2xl p-8 pt-9 text-left">
+        <h3 class="text-lg font-bold mb-3.5">Free</h3>
+        <div class="text-4xl font-extrabold mb-1.5 text-neutral-900">$0</div>
+        <div class="text-sm text-gray-500 mb-5.5" style="visibility: hidden;">placeholder</div>
+        <div class="text-sm font-bold text-neutral-900 mb-3.5">Capture ideas and find them quickly</div>
+        <ul class="list-none flex flex-col gap-2.5 mb-8">
+          <li class="flex items-start gap-2.5 text-sm text-neutral-700">
+            <span class="w-4.5 h-4.5 border border-gray-300 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-2.5 h-2.5" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Sync unlimited devices
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-neutral-700">
+            <span class="w-4.5 h-4.5 border border-gray-300 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-2.5 h-2.5" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            10 GB monthly uploads
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-neutral-700">
+            <span class="w-4.5 h-4.5 border border-gray-300 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-2.5 h-2.5" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            200 MB max. note size
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-neutral-700">
+            <span class="w-4.5 h-4.5 border border-gray-300 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-2.5 h-2.5" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Customize Home dashboard and access extra widgets
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-neutral-700">
+            <span class="w-4.5 h-4.5 border border-gray-300 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-2.5 h-2.5" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Connect primary Google Calendar account
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-neutral-700">
+            <span class="w-4.5 h-4.5 border border-gray-300 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-2.5 h-2.5" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Add due dates, reminders, and notifications to your tasks
+          </li>
+        </ul>
+        <a href="#" class="block w-full text-center border border-gray-200 text-neutral-900 font-bold text-sm py-3 rounded-lg hover:opacity-85 transition-opacity no-underline">Get Started</a>
+      </div>
 
-    .section-dark h2 mark {
-      background: none;
-      color: var(--yellow);
-      text-decoration: underline;
-      text-decoration-color: var(--yellow);
-      text-decoration-thickness: 3px;
-      text-underline-offset: 4px;
-    }
+      <!-- Personal (featured) -->
+      <div class="bg-navy border border-navy rounded-2xl p-11 pt-12 text-left text-white shadow-xl">
+        <h3 class="text-lg font-bold mb-3.5 text-white">Personal</h3>
+        <div class="text-4xl font-extrabold mb-1.5 text-yellow">$11.99</div>
+        <div class="text-sm text-white/65 mb-5.5">Keep home and family on track</div>
+        <ul class="list-none flex flex-col gap-2.5 mb-8">
+          <li class="flex items-start gap-2.5 text-sm text-white/85">
+            <span class="w-4.5 h-4.5 border border-white/40 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-2.5 h-2.5" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Sync unlimited devices
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-white/85">
+            <span class="w-4.5 h-4.5 border border-white/40 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-2.5 h-2.5" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            10 GB monthly uploads
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-white/85">
+            <span class="w-4.5 h-4.5 border border-white/40 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-2.5 h-2.5" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            200 MB max. note size
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-white/85">
+            <span class="w-4.5 h-4.5 border border-white/40 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-2.5 h-2.5" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Customize Home dashboard and access extra widgets
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-white/85">
+            <span class="w-4.5 h-4.5 border border-white/40 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-2.5 h-2.5" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Connect primary Google Calendar account
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-white/85">
+            <span class="w-4.5 h-4.5 border border-white/40 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-2.5 h-2.5" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Add due dates, reminders, and notifications to your tasks
+          </li>
+        </ul>
+        <a href="#" class="block w-full text-center bg-blue text-white font-bold text-sm py-3 rounded-lg hover:opacity-85 transition-opacity no-underline">Get Started</a>
+      </div>
 
-    .section-copy h2 mark {
-      background: linear-gradient(180deg, transparent 60%, rgba(245,200,66,0.4) 60%);
-      color: inherit;
-    }
-
-    /* ─── WORK TOGETHER ─── */
-    .collab-visual {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 240px;
-    }
-
-    .collab-center {
-      width: 52px;
-      height: 52px;
-      background: #fff;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-      z-index: 2;
-    }
-
-    .collab-center svg { width: 28px; height: 28px; }
-
-    .orbit {
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      border: 1.5px dashed #ccc;
-      border-radius: 50%;
-    }
-
-    .orbit-inner {
-      position: absolute;
-      width: 130px;
-      height: 130px;
-      border: 1.5px dashed #ccc;
-      border-radius: 50%;
-    }
-
-    .dot {
-      position: absolute;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    /* ─── BTN OUTLINE ─── */
-    .btn-outline-blue {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--blue-btn);
-      color: #fff;
-      padding: 9px 22px;
-      border-radius: 6px;
-      font-weight: 700;
-      font-size: 0.875rem;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .btn-outline-blue:hover { opacity: 0.85; }
-
-    /* ─── PRICING SECTION (Section 5) ─── */
-    .pricing-section {
-      padding: 90px 60px;
-      background: #f8faff;
-      text-align: center;
-    }
-
-    .pricing-section h2 {
+      <!-- Organization -->
+      <div class="bg-white border border-gray-200 rounded-2xl p-8 pt-9 text-left">
+        <h3 class="text-lg font-bold mb-3.5">Organization</h3>
+        <div class="text-4xl font-extrabold mb-1.5 text-neutral-900">$49.99</div>
+        <div class="text-sm text-gray-500 mb-5.5" style="visibility: hidden;">placeholder</div>
+        <div class="text-sm font-bold text-neutral-900 mb-3.5">Capture ideas and find them quickly</div>
+        <ul class="list-none flex flex-col gap-2.5 mb-8">
+          <li class="flex items-start gap-2.5 text-sm text-neutral-700">
+            <span class="w-4.5 h-4.5 border border-gray-300 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-2.5 h-2.5" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Sync unlimited devices
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-neutral-700">
+            <span class="w-4.5 h-4.5 border border-gray-300 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-2.5 h-2.5" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            10 GB monthly uploads
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-neutral-700">
+            <span class="w-4.5 h-4.5 border border-gray-300 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-2.5 h-2.5" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       font-size: clamp(2rem, 4vw, 2.75rem);
       font-weight: 800;
       color: #111;
@@ -855,19 +1006,6 @@
     </div>
   </div>
 
-  <script>
-    const btn = document.getElementById('hamburger');
-    const menu = document.getElementById('mobileMenu');
-    btn.addEventListener('click', () => {
-      btn.classList.toggle('open');
-      menu.classList.toggle('open');
-    });
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      btn.classList.remove('open');
-      menu.classList.remove('open');
-    }));
-  </script>
-
   <!-- ═══════════════ SECTION 1 — HERO ═══════════════ -->
   <section class="hero">
     <div class="hero-content">
@@ -1110,7 +1248,7 @@
           <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
           <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
         </svg>
-        <span style="background: linear-gradient(90deg,#4285F4,#EA4335,#FBBC05,#34A853); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Google</span>
+        <span style="background: linear-gradient(90deg,#4285F4,#EA4335,#FBBC05,#34A853); background-clip:text; -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Google</span>
       </div>
     </div>
   </section>
