@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customise it - Whitepace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            manrope: ['Manrope', 'sans-serif'],
+          },
+          colors: {
+            navy: '#0b2a6b',
+            'navy-dark': '#091f52',
+            'blue-btn': '#4a7cf7',
+            yellow: '#f5c842',
+            'placeholder-bg': '#c5daf5',
+            'placeholder-border': '#a3c2e8',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Manrope', sans-serif; }
+    mark {
+      background: linear-gradient(180deg, transparent 60%, rgba(245,200,66,0.4) 60%);
+    }
+  </style>
+</head>
+<body class="bg-white text-[#111]">
+
+  <!-- SECTION: Customise it to your needs -->
+  <section class="px-[60px] py-[90px]">
+    <div class="grid grid-cols-2 gap-20 items-center">
+      <div class="section-copy">
+        <h2 class="font-extrabold leading-tight mb-4" style="font-size: clamp(1.8rem, 3vw, 2.5rem);">Customise it to <mark>your needs</mark></h2>
+        <p class="text-[#555] text-[0.9rem] max-w-[360px] mb-7">Customise the app with plugins, custom themes and multiple text editors (Rich Text or Markdown). Or create your own scripts and plugins using the Extension API.</p>
+        <a href="#" class="inline-flex items-center gap-[6px] bg-blue-btn text-white px-[22px] py-2 rounded-md font-bold text-sm no-underline hover:opacity-[0.85] transition-opacity">Let's Go →</a>
+      </div>
+      <div class="bg-placeholder-bg rounded-lg aspect-[4/3] w-full border-2 border-placeholder-border"></div>
+    </div>
+  </section>
+
+  <!-- Responsive -->
+  <style>
+    @media (max-width: 768px) {
+      section { padding: 56px 20px; }
+      .grid-cols-2 { grid-template-columns: 1fr; gap: 36px; }
+    }
+  </style>
+</body>
+</html>

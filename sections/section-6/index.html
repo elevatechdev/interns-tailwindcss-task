@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing - Whitepace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            manrope: ['Manrope', 'sans-serif'],
+          },
+          colors: {
+            navy: '#0b2a6b',
+            'navy-dark': '#091f52',
+            'blue-btn': '#4a7cf7',
+            yellow: '#f5c842',
+            'placeholder-bg': '#c5daf5',
+            'placeholder-border': '#a3c2e8',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Manrope', sans-serif; }
+    mark {
+      background: linear-gradient(180deg, transparent 60%, rgba(245,200,66,0.5) 60%);
+    }
+  </style>
+</head>
+<body class="bg-[#f8faff] text-[#111]">
+
+  <!-- SECTION: Pricing -->
+  <section class="px-[60px] py-[90px] bg-[#f8faff] text-center">
+    <h2 class="font-extrabold mb-3" style="font-size: clamp(2rem, 4vw, 2.75rem);">Choose <mark>Your Plan</mark></h2>
+    <p class="text-[#555] text-[0.95rem] max-w-[520px] mx-auto mb-14">Whether you want to get organized, keep your personal life on track, or boost workplace productivity, Evernote has the right plan for you.</p>
+
+    <div class="grid grid-cols-3 gap-6 items-center max-w-[980px] mx-auto">
+      <!-- Free -->
+      <div class="bg-white border border-[#e5eaf3] rounded-2xl p-9 text-left relative">
+        <h3 class="text-[1.05rem] font-bold mb-[14px]">Free</h3>
+        <div class="text-[2.2rem] font-extrabold mb-1 text-[#111]">$0</div>
+        <div class="text-[0.82rem] text-[#888] mb-[22px]" style="visibility:hidden;">placeholder</div>
+        <div class="text-[0.85rem] font-bold text-[#111] mb-[14px]">Capture ideas and find them quickly</div>
+        <ul class="list-none flex flex-col gap-[10px] mb-8">
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[#444]">
+            <span class="w-[18px] h-[18px] border border-[#bbb] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Sync unlimited devices
+          </li>
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[#444]">
+            <span class="w-[18px] h-[18px] border border-[#bbb] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            10 GB monthly uploads
+          </li>
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[#444]">
+            <span class="w-[18px] h-[18px] border border-[#bbb] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            200 MB max. note size
+          </li>
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[#444]">
+            <span class="w-[18px] h-[18px] border border-[#bbb] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Customize Home dashboard and access extra widgets
+          </li>
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[#444]">
+            <span class="w-[18px] h-[18px] border border-[#bbb] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Connect primary Google Calendar account
+          </li>
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[#444]">
+            <span class="w-[18px] h-[18px] border border-[#bbb] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Add due dates, reminders, and notifications to your tasks
+          </li>
+        </ul>
+        <a href="#" class="block w-full text-center py-3 rounded-lg font-bold text-sm border border-[#d0d8ec] text-[#111] bg-white hover:opacity-[0.85] transition-opacity no-underline">Get Started</a>
+      </div>
+
+      <!-- Personal (Featured) -->
+      <div class="bg-navy border border-navy rounded-2xl p-11 text-left text-white shadow-[0_16px_48px_rgba(11,42,107,0.25)]">
+        <h3 class="text-[1.05rem] font-bold mb-[14px] text-white">Personal</h3>
+        <div class="text-[2.2rem] font-extrabold mb-1 text-yellow">$11.99</div>
+        <div class="text-[0.82rem] text-[rgba(255,255,255,0.65)] mb-[22px]">Keep home and family on track</div>
+        <ul class="list-none flex flex-col gap-[10px] mb-8">
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[rgba(255,255,255,0.85)]">
+            <span class="w-[18px] h-[18px] border border-[rgba(255,255,255,0.4)] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Sync unlimited devices
+          </li>
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[rgba(255,255,255,0.85)]">
+            <span class="w-[18px] h-[18px] border border-[rgba(255,255,255,0.4)] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            10 GB monthly uploads
+          </li>
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[rgba(255,255,255,0.85)]">
+            <span class="w-[18px] h-[18px] border border-[rgba(255,255,255,0.4)] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            200 MB max. note size
+          </li>
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[rgba(255,255,255,0.85)]">
+            <span class="w-[18px] h-[18px] border border-[rgba(255,255,255,0.4)] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Customize Home dashboard and access extra widgets
+          </li>
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[rgba(255,255,255,0.85)]">
+            <span class="w-[18px] h-[18px] border border-[rgba(255,255,255,0.4)] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Connect primary Google Calendar account
+          </li>
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[rgba(255,255,255,0.85)]">
+            <span class="w-[18px] h-[18px] border border-[rgba(255,255,255,0.4)] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Add due dates, reminders, and notifications to your tasks
+          </li>
+        </ul>
+        <a href="#" class="block w-full text-center py-3 rounded-lg font-bold text-sm bg-blue-btn text-white hover:opacity-[0.85] transition-opacity no-underline">Get Started</a>
+      </div>
+
+      <!-- Organization -->
+      <div class="bg-white border border-[#e5eaf3] rounded-2xl p-9 text-left relative">
+        <h3 class="text-[1.05rem] font-bold mb-[14px]">Organization</h3>
+        <div class="text-[2.2rem] font-extrabold mb-1 text-[#111]">$49.99</div>
+        <div class="text-[0.82rem] text-[#888] mb-[22px]" style="visibility:hidden;">placeholder</div>
+        <div class="text-[0.85rem] font-bold text-[#111] mb-[14px]">Capture ideas and find them quickly</div>
+        <ul class="list-none flex flex-col gap-[10px] mb-8">
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[#444]">
+            <span class="w-[18px] h-[18px] border border-[#bbb] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Sync unlimited devices
+          </li>
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[#444]">
+            <span class="w-[18px] h-[18px] border border-[#bbb] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            10 GB monthly uploads
+          </li>
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[#444]">
+            <span class="w-[18px] h-[18px] border border-[#bbb] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            200 MB max. note size
+          </li>
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[#444]">
+            <span class="w-[18px] h-[18px] border border-[#bbb] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Customize Home dashboard and access extra widgets
+          </li>
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[#444]">
+            <span class="w-[18px] h-[18px] border border-[#bbb] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Connect primary Google Calendar account
+          </li>
+          <li class="flex items-start gap-[10px] text-[0.85rem] text-[#444]">
+            <span class="w-[18px] h-[18px] border border-[#bbb] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg viewBox="0 0 10 10" fill="none" class="w-[10px] h-[10px]"><path d="M2 5l2.5 2.5L8 3" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Add due dates, reminders, and notifications to your tasks
+          </li>
+        </ul>
+        <a href="#" class="block w-full text-center py-3 rounded-lg font-bold text-sm border border-[#d0d8ec] text-[#111] bg-white hover:opacity-[0.85] transition-opacity no-underline">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Responsive -->
+  <style>
+    @media (max-width: 768px) {
+      section { padding: 56px 20px; }
+      .grid-cols-3 { grid-template-columns: 1fr; max-width: 420px; }
+      .grid-cols-3 > div:nth-child(2) { order: -1; }
+    }
+  </style>
+</body>
+</html>

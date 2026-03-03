@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work Together - Whitepace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            manrope: ['Manrope', 'sans-serif'],
+          },
+          colors: {
+            navy: '#0b2a6b',
+            'navy-dark': '#091f52',
+            'blue-btn': '#4a7cf7',
+            yellow: '#f5c842',
+            'placeholder-bg': '#c5daf5',
+            'placeholder-border': '#a3c2e8',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Manrope', sans-serif; }
+    mark {
+      background: linear-gradient(180deg, transparent 60%, rgba(245,200,66,0.4) 60%);
+    }
+  </style>
+</head>
+<body class="bg-white text-[#111]">
+
+  <!-- SECTION: Work Together -->
+  <section class="px-[60px] py-[90px]" style="padding-top: 0;">
+    <div class="grid grid-cols-2 gap-20 items-center">
+      <div class="section-copy">
+        <h2 class="font-extrabold leading-tight mb-4" style="font-size: clamp(1.8rem, 3vw, 2.5rem);">Work together</h2>
+        <p class="text-[#555] text-[0.9rem] max-w-[360px] mb-7">With whitepace, share your notes with your colleagues and collaborate on them. You can also publish a note to the internet and share the URL with others.</p>
+        <a href="#" class="inline-flex items-center gap-[6px] bg-blue-btn text-white px-[22px] py-2 rounded-md font-bold text-sm no-underline hover:opacity-[0.85] transition-opacity">Try it now →</a>
+      </div>
+      <div class="collab-visual relative flex items-center justify-center min-h-[240px]">
+        <div class="orbit absolute w-[220px] h-[220px] border border-dashed border-[#ccc] rounded-full">
+          <div class="dot absolute w-[22px] h-[22px] rounded-full" style="background:#4285f4; top:10%; left:62%;"></div>
+          <div class="dot absolute w-[22px] h-[22px] rounded-full" style="background:#fbbc04; top:50%; left:100%;"></div>
+          <div class="dot absolute w-[22px] h-[22px] rounded-full" style="background:#34a853; top:85%; left:72%;"></div>
+          <div class="dot absolute w-[22px] h-[22px] rounded-full" style="background:#ea4335; top:50%; left:-4%;"></div>
+          <div class="dot absolute w-[22px] h-[22px] rounded-full" style="background:#4285f4; top:15%; left:28%;"></div>
+        </div>
+        <div class="orbit-inner absolute w-[130px] h-[130px] border border-dashed border-[#ccc] rounded-full">
+          <div class="dot absolute w-[22px] h-[22px] rounded-full" style="background:#4285f4; top:50%; left:100%;"></div>
+          <div class="dot absolute w-[22px] h-[22px] rounded-full" style="background:#fbbc04; top:0%; left:50%;"></div>
+          <div class="dot absolute w-[22px] h-[22px] rounded-full" style="background:#34a853; top:50%; left:-4%;"></div>
+          <div class="dot absolute w-[22px] h-[22px] rounded-full" style="background:#4285f4; top:100%; left:50%;"></div>
+        </div>
+        <div class="collab-center w-[52px] h-[52px] bg-white rounded-[14px] flex items-center justify-center shadow-lg z-10 relative">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7">
+            <path d="M4 8 L10 24 L16 14 L22 24 L28 8" stroke="#0b2a6b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Responsive -->
+  <style>
+    @media (max-width: 768px) {
+      section { padding: 56px 20px; }
+      .grid-cols-2 { grid-template-columns: 1fr; gap: 36px; }
+      .collab-visual { min-height: 200px; }
+      .orbit { width: 180px; height: 180px; }
+      .orbit-inner { width: 106px; height: 106px; }
+    }
+  </style>
+</body>
+</html>
