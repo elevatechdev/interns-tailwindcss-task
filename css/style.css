@@ -2,5 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-/* sample import of css */
-@import "../sections/example/example.css";
+/* Section imports */
+@import "../sections/header/header.css";
+@import "../sections/hero/hero.css";
+@import "../sections/features/features.css";
+@import "../sections/pricing/pricing.css";
+@import "../sections/testimonials/testimonials.css";
+@import "../sections/cta/cta.css";
+@import "../sections/footer/footer.css";
+
+/* Global styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #043873;
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scroll animation utility */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

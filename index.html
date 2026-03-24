@@ -3,34 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Whitepace</title>
+    <title>Whitepace – All-In-One Collaboration Tool for Remote Teams</title>
+    <meta name="description" content="Whitepace was created for the new ways we live and work. We make a better workspace around the world." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script src="js/tailwind.js"></script>
     <script src="tailwind.config.js"></script>
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/include_html.js"></script>
   </head>
   <body>
-      <!-- add include html here -->
 
-      <!-- example -->
-      <div w3-include-html="sections/example/example.html"></div>
+    <!-- Header -->
+    <div w3-include-html="sections/header/header.html"></div>
 
+    <!-- Hero -->
+    <div w3-include-html="sections/hero/hero.html"></div>
 
+    <!-- Features -->
+    <div w3-include-html="sections/features/features.html"></div>
 
+    <!-- Pricing -->
+    <div w3-include-html="sections/pricing/pricing.html"></div>
 
+    <!-- Testimonials -->
+    <div w3-include-html="sections/testimonials/testimonials.html"></div>
 
+    <!-- CTA -->
+    <div w3-include-html="sections/cta/cta.html"></div>
 
+    <!-- Footer -->
+    <div w3-include-html="sections/footer/footer.html"></div>
 
+    <script>
+      includeHTML();
+    </script>
 
+    <script>
+      // Wait for sections to load, then init scroll animations
+      setTimeout(function() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
 
-      
+        document.querySelectorAll('.fade-in').forEach((el) => {
+          observer.observe(el);
+        });
+      }, 500);
+    </script>
 
-      <!-- call includeHTML function -->
-      <script>
-          includeHTML();
-      </script>
   </body>
 </html>
